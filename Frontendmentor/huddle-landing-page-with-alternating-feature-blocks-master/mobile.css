@@ -1,0 +1,75 @@
+/* width more than 1024px */
+@media (min-width:1024px){
+    header{
+        padding:2em 2em 1em;
+        background-image: url(./huddle_images/bg-hero-desktop.svg);
+    }
+   .hero{
+       margin-top:4em;
+       flex-direction: row;
+       text-align: left;
+   } 
+   .hero h1{
+       font-size: 2rem;
+   }
+   .mockup{
+       width:50%;
+   }
+   .box{
+    display:flex;
+    align-items: center;
+    max-width:90%;
+    text-align: left;
+   }
+   .box:nth-of-type(odd){
+    flex-direction: row-reverse;
+   }
+   .box_info{
+    padding-left:5em;
+    margin-top:-5em;
+   }
+   .box_info h2{
+       margin-top:0;
+   }
+   .box_info p{
+       padding:0;
+       float: left;
+       width:90%;
+   }
+   .box img{
+       width:40%;
+   }
+   .ready_box{
+       max-width: 60%;
+       z-index:1;
+   }
+   footer{
+       display:flex;
+       position:relative;
+       justify-content: space-around;
+       padding-left:1em;
+       padding-right:1em;
+   }
+   .left{
+       width:40%;
+   }
+   .footer_info div{
+       margin-left:.5em;
+   }
+   .menu{
+       margin:0;
+       display:flex;
+       justify-content: space-around;
+       width:30%;
+   }
+   .menu_left a,.menu_right a{
+       display:block;
+   }
+   .copy{
+       position:absolute;
+       height:min-content;
+        bottom:10%;
+        right:7%;
+
+    }
+}
