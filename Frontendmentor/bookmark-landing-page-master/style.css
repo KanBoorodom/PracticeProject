@@ -4,6 +4,7 @@
     margin:0;
     padding:0;
     font-family:'Rubik', sans-serif;
+    outline:none;
 }
 html {
     scroll-behavior: smooth;
@@ -20,6 +21,23 @@ a{
     --clr-grayBlue: hsl(229, 8%, 60%);
     --clr-darkBlue: hsl(229, 31%, 21%);
 }
+/* all p tag is here************************************************/
+.info_box p,#feature p,#download p{
+    margin-top:1rem;
+    font-size:1.3rem;
+    font-weight: 400;
+    width:95%;
+    max-width: 750px;
+    line-height: 1.5em;
+    display:inline-block;
+    color:var(--clr-grayBlue);
+}
+
+/* all h2 tag is here************************************************/
+.info_box h2,#feature h2,#download h2,#faq h2{
+    font-size:1.7rem;
+}
+
 /* Header ***********************************************/
 nav{
     padding:2em 1em 0;
@@ -46,7 +64,6 @@ nav{
     transition:all 1s;
 }
 
-
 .menu{
     padding-top:5em;
     position:fixed;
@@ -72,7 +89,7 @@ nav{
 .menu_items a:active{
     color:var(--clr-softRed);
 }
-.login{
+.faq{
     margin:0 auto;
     padding:.5em 0;
     border:3px solid white;
@@ -81,7 +98,7 @@ nav{
     max-width:500px;
     
 }
-.login:active{
+.faq:active{
     color:white;
     background-color:var(--clr-softRed);
     border: none;
@@ -121,7 +138,7 @@ nav{
     top:0;
     transition:all .7s ease-in;
 }
-/* Head hero *******************************************************/
+/* Hero *******************************************************/
 .box{
     display:flex;
     flex-direction: column;
@@ -134,7 +151,7 @@ nav{
     width:100%;
 }
 .image_box img{
-    max-width:700px;
+    max-width:680px;
     display:block;
     margin:auto;
 }
@@ -163,15 +180,6 @@ nav{
     margin-top:1em;
     font-size: 2rem;
 }
-.info_box p{
-    margin-top:1rem;
-    font-size:1.3rem;
-    font-weight: 400;
-    width:95%;
-    line-height: 1.5em;
-    display:inline-block;
-    color:var(--clr-grayBlue);
-}
 .btn{
     margin-top:2em;
     width:100%;
@@ -196,11 +204,8 @@ nav{
 
 /* Feature *******************************************************/
 #feature{
-    margin-top:8em;
+    margin-top:7em;
     text-align: center;
-}
-#feature h2{
-    font-size:1.7rem;
 }
 #feature p{
     margin-top:1em;
@@ -218,6 +223,10 @@ nav{
     display:inline-block;
     position:relative;
     border-bottom: 2px solid rgb(159,159,159,.2);
+    border-left:none;
+    border-right:none;
+    border-top:none;
+    background-color: unset;
     padding:1em 0;
     margin:0 auto;
     width:80%;
@@ -234,7 +243,6 @@ nav{
 }
 .tap_head::before {
     content:'';
-
 }
 .tap_head_active{
     color:var(--clr-darkBlue);
@@ -242,9 +250,9 @@ nav{
 .tap_bottom_active::before{
     content:'';
     border-bottom:5px solid var(--clr-softRed);
-    width:40%;
+    width:80%;
     bottom:3%;
-    left:30%;
+    left:10%;
     position:absolute;
 }
 .box_two{
@@ -257,27 +265,112 @@ nav{
     border-bottom-right-radius: 100px;
     border-top-right-radius: 100px;
     left:0;
-    bottom:-10%;
+    bottom:-12%;
     height: 60%;
-    width:90%;  
+    width:95%;  
 }
 
 .info_box h2{
     margin-top:2.5em;
-    font-size: 1.7rem;
 }
 .box_two_btn{
     display:none;
 }
 
+/* Download ***********************************************/
+#download{
+    margin-top:5em;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.download_box{
+    margin-top:3em;
+    padding:2em 1em 1em;
+    border-radius: 10px;
+    width:90%;
+    max-width:600px;
+    background-image: url('./images/bg-dots.svg');
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: 68%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.download_box h2{
+    margin-top:1.5em;
+}
+.download_box p{
+    margin-top:.5em;
+}
+.download_box button{
+    margin-top:3em;
+    font-size:1.5rem;
+    padding:1em 1em;
+    border-radius: 10px;
+    border:none;
+    background-color: var(--clr-softBlue);
+    color:white;
+}
 
+#faq{
+    margin-top:5em;
+    text-align: center;
+}
+.faq_info{
+    margin-top:1rem;
+    font-size:1.3rem;
+    font-weight: 400;
+    width:95%;
+    max-width: 750px;
+    line-height: 1.5em;
+    display:inline-block;
+    color:var(--clr-grayBlue);
 
+}
+.question{
+    display:flex;
+    position:relative;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:1em;
+    padding:0 1em;
+}
+.question h3{
+    font-size:1.5rem;
+    font-weight: 400;
+}
+.arrow{
+    cursor: pointer;
+    z-index:1;
+}
+.active_arrow path{
+    stroke: red;
+}
 
-
-
-
-
-
+.answer{
+    width:100%;
+    text-align:left;
+    margin-top:1rem;
+    font-size:1.3rem;
+    font-weight: 400;
+    width:95%;
+    max-width: 750px;
+    line-height: 1.5em;
+    color:var(--clr-grayBlue);
+visibility: hidden;
+opacity:0;
+ max-height:0;
+ overflow: hidden;
+ transition: all 1s ease;
+}
+.answer_active{
+    visibility: visible;
+    opacity: 1;
+    transition: all 1s ease;
+    max-height: 500px;
+}
 
 
 

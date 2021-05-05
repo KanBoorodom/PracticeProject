@@ -26,6 +26,9 @@ menuItems.forEach((menuItem)=>{
     menuItem.addEventListener('click',menuToggle)
 })
 
+
+
+/* Scroll*******************************************/
 var prevScrollpos = window.pageYOffset;
 window.onscroll = ()=> {
     var currentPos = window.pageYOffset;
@@ -35,6 +38,7 @@ window.onscroll = ()=> {
     else{hamburger.style.top ="-100px";}
     prevScrollpos = currentPos
 }
+
 
 /* Tap and Feature Info*******************************************/
 const tapHeads = document.querySelectorAll('.tap_head')
@@ -75,8 +79,13 @@ tapHeads.forEach((tapHead)=>{
     })
 })
 
+/* FAQ */
+const arrow = document.querySelector('.arrow')
+const ans = document.querySelector('.answer')
 
-
-
+arrow.addEventListener('click',()=>{
+    ans.classList.toggle('answer_active')
+    console.log('hi')
+})
 
 
