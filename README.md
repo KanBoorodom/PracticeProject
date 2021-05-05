@@ -1,3 +1,3 @@
 # Portfolio
 Frontend Portfolio 
-- Project from frontend mentor
+- Projects from frontend mentor
