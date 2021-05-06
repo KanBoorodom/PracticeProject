@@ -22,7 +22,9 @@ a{
     --clr-darkBlue: hsl(229, 31%, 21%);
 }
 /* all p tag is here************************************************/
-.info_box p,#feature p,#download p{
+/* .info_box p,#feature p,#download p
+ */
+div > p, section > p{
     margin-top:1rem;
     font-size:1.3rem;
     font-weight: 400;
@@ -34,10 +36,11 @@ a{
 }
 
 /* all h2 tag is here************************************************/
-.info_box h2,#feature h2,#download h2,#faq h2{
-    font-size:1.7rem;
-}
-
+/* .info_box h2,#feature h2,#download h2,#faq h2,#contact h2{
+}*/
+ div > h2, section > h2{
+     font-size: 1.7rem;
+ }
 /* Header ***********************************************/
 nav{
     padding:2em 1em 0;
@@ -89,7 +92,7 @@ nav{
 .menu_items a:active{
     color:var(--clr-softRed);
 }
-.faq{
+.contact_btn{
     margin:0 auto;
     padding:.5em 0;
     border:3px solid white;
@@ -98,7 +101,7 @@ nav{
     max-width:500px;
     
 }
-.faq:active{
+.contact_btn:active{
     color:white;
     background-color:var(--clr-softRed);
     border: none;
@@ -180,13 +183,13 @@ nav{
     margin-top:1em;
     font-size: 2rem;
 }
-.btn{
+.btn_container{
     margin-top:2em;
     width:100%;
     display:flex;
     justify-content: center;
 }
-.blue_btn,.white_btn{
+.btn{
     padding:1.2em 1.3em;
     display:inline-block;
     border-radius: 10px;
@@ -326,51 +329,165 @@ nav{
     line-height: 1.5em;
     display:inline-block;
     color:var(--clr-grayBlue);
-
+}
+.question_box{
+    margin-top:2em;
 }
 .question{
+    margin:1em auto 0;
+    padding:0 1em;
     display:flex;
     position:relative;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin-top:1em;
-    padding:0 1em;
+    max-width: 700px;
+}
+.question::before{
+    content:'';
+    position:absolute;
+    width:93%;
+    height:3px;
+    background-color:rgb(159,159,159,.2);
+    bottom:-5%;
+    left:3%;
 }
 .question h3{
-    font-size:1.5rem;
+    font-size:1.1rem;
     font-weight: 400;
 }
 .arrow{
     cursor: pointer;
     z-index:1;
+    transition:transform .7s;
 }
-.active_arrow path{
+.arrow_up{
+    transform: rotate(180deg);
+    transition:transform .7s;
+}
+.arrow_active path{
     stroke: red;
 }
 
 .answer{
-    width:100%;
     text-align:left;
     margin-top:1rem;
-    font-size:1.3rem;
     font-weight: 400;
     width:95%;
     max-width: 750px;
     line-height: 1.5em;
     color:var(--clr-grayBlue);
-visibility: hidden;
-opacity:0;
- max-height:0;
- overflow: hidden;
- transition: all 1s ease;
+    visibility: hidden;
+    opacity:0;
+    max-height:0;
+    overflow: hidden;
+    transition: all 1s ease;
 }
 .answer_active{
     visibility: visible;
     opacity: 1;
     transition: all 1s ease;
-    max-height: 500px;
+    max-height: 1000px;
 }
+.moreinfo_btn{
+    padding-left:3em;
+    padding-right:3em;
+    margin-top:3em;
+}
+#contact{
+    margin-top:7em;
+    padding:5em 1em 1em;
+    text-align: center;
+    background-color:var(--clr-softBlue);
+}
+
+.contact_p{
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: .3em;
+    width:95%;
+    max-width: 750px;
+    line-height: 1.5em;
+    display:inline-block;
+    color:white;
+}
+#contact h2{
+    margin:.7em auto 1em;
+    font-size: 1.7rem;
+    color:white;
+    font-weight: 500;
+}
+#email{
+    padding:.8em .8em;
+    margin:0 auto;
+    display:block;
+    width:100%;
+    max-width:700px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border:none;
+}  
+.input_error{
+    background:var(--clr-softRed);
+    padding:.3em;
+    margin:1em auto 0;
+    border-radius:10px;
+    width:100%;
+    max-width: 700px;
+    position:relative;
+}
+.normal_text{
+    margin:.5em 0 0;
+    font-size: 1rem;
+    font-style: italic;
+    text-align: left;
+    visibility: hidden;
+    opacity:0;
+    max-height:0;
+    overflow: hidden;
+}
+.text_error{
+    color:white;
+    visibility: visible;
+    opacity: 1;
+    transition: all 1s ease;
+    max-height: 1000px;
+}
+.errorIcon{
+    position:absolute;
+    right:5%;
+    opacity:0;
+}
+.error{
+    opacity:1;
+    top:20%;
+}
+::placeholder{
+    color:var(--clr-grayBlue);
+    opacity: .8;
+}
+.red_btn{
+    margin-top:1em;
+    background-color: var(--clr-softRed);
+    color:white;
+    font-size: 1rem;
+    width:100%;
+    max-width:700px;
+    border:none;
+}
+.red_btn:active{
+    opacity: .7;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

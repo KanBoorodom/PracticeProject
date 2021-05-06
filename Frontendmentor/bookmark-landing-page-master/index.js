@@ -78,14 +78,60 @@ tapHeads.forEach((tapHead)=>{
                             link that you can send at the click of a button.'
     })
 })
-
 /* FAQ */
-const arrow = document.querySelector('.arrow')
-const ans = document.querySelector('.answer')
+const arrows = document.querySelectorAll('.arrow')
+const answers = document.querySelectorAll('.answer')
 
-arrow.addEventListener('click',()=>{
-    ans.classList.toggle('answer_active')
-    console.log('hi')
+/* ใช้ let in for loop to avoid closure problem */
+for (let i=0;i<arrows.length;i++){
+    arrows[i].addEventListener('click',()=>{
+        let arrowActive = document.querySelector('.arrow_active')
+        let answerActive = document.querySelector('.answer_active')
+        /* Check คลิ๊กตัวเองถ้าคลิ๊กตัวเองก็ toggle ให้หุบลงแล้วออกเลย */
+        if(answers[i].classList.contains('answer_active')){
+            answers[i].classList.toggle('answer_active')
+            arrows[i].classList.toggle('arrow_active')
+            arrows[i].classList.toggle('arrow_up')
+            return
+        }
+        /* Check คลิ๊กตัวอื่นเพื่อ toggle ตัวก่อนหน้าให้หุบลง */
+        if(arrowActive !== null){
+            arrowActive.classList.toggle('arrow_active')
+            arrowActive.classList.toggle('arrow_up')
+            answerActive.classList.toggle('answer_active')
+        }
+        answers[i].classList.toggle('answer_active')
+        arrows[i].classList.toggle('arrow_active')
+        arrows[i].classList.toggle('arrow_up')
+    })
+}
+
+/* Email validation */
+const reg = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/
+const email = document.querySelector('#email')
+const submit = document.querySelector('#form')
+const input = document.querySelector('.input')
+const text = document.querySelector('.normal_text')
+const inputContainer = document.querySelector('.inputContainer')
+const errorIcon = document.querySelector('.errorIcon')
+var errorOn = false
+submit.addEventListener('submit',function(e){
+    e.preventDefault()
+    if(email.value.match(reg)){
+        if(errorOn){
+            console.log('match')
+            text.classList.toggle('text_error')
+            inputContainer.classList.toggle('input_error')
+            errorIcon.classList.toggle('error')
+            errorOn = false
+        }
+    }
+    else{
+        if(!errorOn){
+            text.classList.toggle('text_error')
+            inputContainer.classList.toggle('input_error')
+            errorIcon.classList.toggle('error')
+            errorOn = true
+        }
+    }
 })
-
-
