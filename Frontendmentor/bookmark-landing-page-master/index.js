@@ -8,7 +8,8 @@ const logoChar = document.querySelector('.logoChar')
 const circle = document.querySelector('.circle')
 const path = document.querySelector('.path')
 const logo = document.querySelector('.logo')
-
+const social = document.querySelector('.social')
+var w = window.innerWidth;
  /* Nav Function */
  const menuToggle = ()=>{
     hambars.forEach((hambar)=>{
@@ -19,13 +20,16 @@ const logo = document.querySelector('.logo')
     circle.classList.toggle('logoActive')
     path.classList.toggle('logoActiveBlue')
     logo.classList.toggle('logoActive')
+    social.classList.toggle('social_active')
 }
 
 hamburger.addEventListener('click',menuToggle)
+
+if(w<=1024){
 menuItems.forEach((menuItem)=>{
     menuItem.addEventListener('click',menuToggle)
 })
-
+}
 
 
 /* Scroll*******************************************/
@@ -33,9 +37,21 @@ var prevScrollpos = window.pageYOffset;
 window.onscroll = ()=> {
     var currentPos = window.pageYOffset;
     if(prevScrollpos > currentPos){
-        hamburger.style.top ="4%";
-    }
-    else{hamburger.style.top ="-100px";}
+        if(w>1024){
+            menu.style.top = "2%"
+        }
+        else{
+            hamburger.style.top ="4%"
+        }
+    }    
+    else{
+        if(w>1024){
+            menu.style.top = "-100px"
+        }
+        else{
+            hamburger.style.top ="-100px"
+        }
+    }    
     prevScrollpos = currentPos
 }
 
@@ -81,21 +97,28 @@ tapHeads.forEach((tapHead)=>{
 /* FAQ */
 const arrows = document.querySelectorAll('.arrow')
 const answers = document.querySelectorAll('.answer')
+const questions = document.querySelectorAll('.question')
 
 /* ใช้ let in for loop to avoid closure problem */
-for (let i=0;i<arrows.length;i++){
-    arrows[i].addEventListener('click',()=>{
+for (let i=0;i<questions.length;i++){
+    questions[i].addEventListener('click',()=>{
         let arrowActive = document.querySelector('.arrow_active')
         let answerActive = document.querySelector('.answer_active')
-        /* Check คลิ๊กตัวเองถ้าคลิ๊กตัวเองก็ toggle ให้หุบลงแล้วออกเลย */
-        if(answers[i].classList.contains('answer_active')){
-            answers[i].classList.toggle('answer_active')
+        /* Check คลิ๊กตัวเองถ้าคลิ๊กตัวเองก็ toggle ให้หุบลงแล้วออกเลย 
+         if(answers[i].classList.contains('answer_active')){
+            answerActive.classList.toggle('answer_active')
             arrows[i].classList.toggle('arrow_active')
             arrows[i].classList.toggle('arrow_up')
             return
-        }
-        /* Check คลิ๊กตัวอื่นเพื่อ toggle ตัวก่อนหน้าให้หุบลง */
+        }*/
+         /* Check คลิ๊กตัวอื่นเพื่อ toggle ตัวก่อนหน้าให้หุบลง */
         if(arrowActive !== null){
+            if(answers[i].classList.contains('answer_active')){
+                answerActive.classList.toggle('answer_active')
+                arrows[i].classList.toggle('arrow_active')
+                arrows[i].classList.toggle('arrow_up')
+                return
+            }    
             arrowActive.classList.toggle('arrow_active')
             arrowActive.classList.toggle('arrow_up')
             answerActive.classList.toggle('answer_active')

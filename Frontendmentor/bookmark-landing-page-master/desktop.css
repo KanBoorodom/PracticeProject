@@ -1,0 +1,118 @@
+/* Base on width 1440px */
+@media(min-width:1024px){
+    :root{
+        --clr-softBlue: hsl(231, 69%, 60%);
+        --clr-softRed: hsl(0, 94%, 66%);
+        --clr-grayBlue: hsl(229, 8%, 60%);
+        --clr-darkBlue: hsl(229, 31%, 21%);
+    }
+    
+/* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+}
+
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--clr-softBlue); 
+}  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--clr-softRed); 
+}
+    nav{
+        padding:0;
+        margin:1em auto;
+        align-items: center;
+        width:85%;
+        
+    }
+    #hamburger{
+        display:none;
+    }
+    .menu{
+        padding:0;
+        position: initial;
+        background-color: unset;
+        display:flex;
+        position:fixed;
+        top:2%;
+        right:5%;
+        height:fit-content;
+        justify-content: flex-end;
+        gap: 3rem;
+    }
+    .top_items{
+        color:var(--clr-darkBlue);
+        font-size:1.3rem;
+    }
+    .menu_items{
+        margin:0;
+    }
+    .contact_btn{
+        padding-left:2em;
+        padding-right:2em;
+        background:var(--clr-softRed);
+        width:20%;
+        color:white;
+        transition: all 1s ease;    
+    }
+    .contact_btn:hover{
+        background:white;
+        color:var(--clr-softRed);
+        border:3px solid var(--clr-softRed);
+        transition: all 1s ease;    
+    }
+    .top_items:hover{
+        color:var(--clr-softRed);
+    }
+    .first_box{
+        flex-direction: row-reverse;
+    }
+    .info_box{
+        margin-left:4em;
+        text-align: left;
+        width:80%;
+    }
+    .btn_container{
+        justify-content: flex-start;
+    }
+    .white_btn:hover{
+        border:3px solid var(--clr-darkBlue);
+        box-shadow: none;
+        transition: all .5s ease;
+    }
+    .blue_btn:hover{
+        border:3px solid var(--clr-softBlue);
+        color:var(--clr-softBlue);
+        background:none;
+        transition: all 1s ease;
+    }
+    .feature_tap{
+        display:flex;
+        width:80%;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .tap_head:nth-child(1){
+        border-top:none;
+    }
+    .second_box{
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .info_two{
+        width:50%;
+        margin:0;
+    }
+.img_two{
+    width:100%;
+}
+.image_box{
+    width:50%;
+}
+    .box_two_btn{
+        display:unset;
+    }
+}
