@@ -1,3 +1,4 @@
+/* Base on width 375px */
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
 * {
     box-sizing: border-box;
@@ -155,8 +156,8 @@ nav{
     width:100%;
 }
 .image_box img{
-    max-width:680px;
-    display:block;
+/*     max-width:680px;
+ */    display:block;
     margin:auto;
 }
 .img_one{
@@ -259,9 +260,10 @@ nav{
     left:10%;
     position:absolute;
 }
-.second_box{
+#feature_info{
     margin-top:5em;
 }
+
 .img_two{
     width:90%;
 }

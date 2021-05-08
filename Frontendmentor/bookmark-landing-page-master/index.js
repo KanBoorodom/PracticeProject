@@ -1,5 +1,6 @@
-/* Mobile width 375px */
-/* Nav *******************************************/
+/* Nav and Scroll *******************************************/
+
+/*Nav***********************/
 const hamburger = document.querySelector('#hamburger')
 const hambars = document.querySelectorAll('.hambar')
 const menu = document.querySelector('.menu')
@@ -9,9 +10,9 @@ const circle = document.querySelector('.circle')
 const path = document.querySelector('.path')
 const logo = document.querySelector('.logo')
 const social = document.querySelector('.social')
-var w = window.innerWidth;
- /* Nav Function */
- const menuToggle = ()=>{
+const startWidth = window.innerWidth
+/* Nav Function */
+const menuToggle = ()=>{
     hambars.forEach((hambar)=>{
         hambar.classList.toggle('active')
     })
@@ -21,40 +22,58 @@ var w = window.innerWidth;
     path.classList.toggle('logoActiveBlue')
     logo.classList.toggle('logoActive')
     social.classList.toggle('social_active')
+    console.log(menu.style.top)
 }
 
-hamburger.addEventListener('click',menuToggle)
-
-if(w<=1024){
-menuItems.forEach((menuItem)=>{
-    menuItem.addEventListener('click',menuToggle)
-})
-}
-
-
-/* Scroll*******************************************/
-var prevScrollpos = window.pageYOffset;
-window.onscroll = ()=> {
+/*Scroll***********************/
+var prevScrollpos = window.pageYOffset
+/* Scroll Function */
+const scrollCheck = ()=>{ 
     var currentPos = window.pageYOffset;
     if(prevScrollpos > currentPos){
-        if(w>1024){
             menu.style.top = "2%"
-        }
-        else{
-            hamburger.style.top ="4%"
-        }
     }    
     else{
-        if(w>1024){
-            menu.style.top = "-100px"
-        }
-        else{
-            hamburger.style.top ="-100px"
-        }
-    }    
+            menu.style.top = "-10%"
+    }
     prevScrollpos = currentPos
 }
+ 
+/* จัดการการแสดงผล Responsive nav and scroll**************/
+ 
+ if(startWidth<1024){   /* ถ้าเริ่มที่ mobile จะทำการ toggle menu items ให้ nav link ได้โดยไม่มีปัญหา */
+    menuItems.forEach((menuItem)=>{
+        menuItem.addEventListener('click',menuToggle)
+    })
+}
+else{  /* ถ้าเริ่ม desktop จะจัดการ Scroll bar*/
+    window.addEventListener('scroll',scrollCheck)
+}
 
+window.addEventListener('resize',()=>{
+    var currentWidth = window.innerWidth
+    if((currentWidth > 1024 && startWidth < 1024) || (currentWidth > 1024 && startWidth > 1024)){ /* เริ่มที่ mobile scale ไป desktop*/
+        menuItems.forEach((menuItem)=>{
+            menuItem.removeEventListener('click',menuToggle)
+        })
+        window.addEventListener('scroll',scrollCheck) 
+        return    
+    }
+    else if((currentWidth < 1024 && startWidth < 1024) || (currentWidth < 1024 && startWidth > 1024)){ /* เริ่มที่ mobile scale ไป desktop แล้วกลับมา mobile*/
+        menuItems.forEach((menuItem)=>{
+            menuItem.addEventListener('click',menuToggle)
+        })
+        window.removeEventListener('scroll',scrollCheck) 
+        menu.style.removeProperty("top");
+        return
+    }
+    else{
+        menuItems.forEach((menuItem)=>{
+            menuItem.addEventListener('click',menuToggle)
+        })    
+    }
+})
+hamburger.addEventListener('click',menuToggle)
 
 /* Tap and Feature Info*******************************************/
 const tapHeads = document.querySelectorAll('.tap_head')
@@ -65,7 +84,7 @@ const infoP = document.querySelector('.feature_info_p')
 /* Default อยู่ที่ tap แรก */
 firstTap.classList.toggle('tap_bottom_active')
 firstTap.classList.toggle('tap_head_active')
-tapHeads.forEach((tapHead)=>{
+tapHeads.forEach((tapHead)=>{ /* ทำ tap ให้ตอบสนองต่อแต่ละหัวข้อ */
     tapHead.addEventListener('click',()=>{
         var alreadyActive = document.querySelector('.tap_bottom_active') /*เช็คเพิ่อเปลี่ยนตัวที่ active*/
         if(alreadyActive !== null){    
@@ -94,24 +113,18 @@ tapHeads.forEach((tapHead)=>{
                             link that you can send at the click of a button.'
     })
 })
-/* FAQ */
+
+/* FAQ *******************************************/
 const arrows = document.querySelectorAll('.arrow')
 const answers = document.querySelectorAll('.answer')
 const questions = document.querySelectorAll('.question')
 
-/* ใช้ let in for loop to avoid closure problem */
-for (let i=0;i<questions.length;i++){
+
+for (let i=0;i<questions.length;i++){   /* use let in for loop to avoid closure problem !!*/
     questions[i].addEventListener('click',()=>{
         let arrowActive = document.querySelector('.arrow_active')
         let answerActive = document.querySelector('.answer_active')
-        /* Check คลิ๊กตัวเองถ้าคลิ๊กตัวเองก็ toggle ให้หุบลงแล้วออกเลย 
-         if(answers[i].classList.contains('answer_active')){
-            answerActive.classList.toggle('answer_active')
-            arrows[i].classList.toggle('arrow_active')
-            arrows[i].classList.toggle('arrow_up')
-            return
-        }*/
-         /* Check คลิ๊กตัวอื่นเพื่อ toggle ตัวก่อนหน้าให้หุบลง */
+        /* Check คลิ๊กตัวเองถ้าคลิ๊กตัวเองก็ toggle ให้หุบลงแล้วออกเลย */
         if(arrowActive !== null){
             if(answers[i].classList.contains('answer_active')){
                 answerActive.classList.toggle('answer_active')
@@ -119,6 +132,7 @@ for (let i=0;i<questions.length;i++){
                 arrows[i].classList.toggle('arrow_up')
                 return
             }    
+            /* Check ถ้าไม่ได้คลิ๊กตัวเอง toggle ตัวก่อนหน้าให้หุบลง */
             arrowActive.classList.toggle('arrow_active')
             arrowActive.classList.toggle('arrow_up')
             answerActive.classList.toggle('answer_active')
@@ -129,7 +143,7 @@ for (let i=0;i<questions.length;i++){
     })
 }
 
-/* Email validation */
+/* Email validation *******************************************/
 const reg = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/
 const email = document.querySelector('#email')
 const submit = document.querySelector('#form')
@@ -150,7 +164,7 @@ submit.addEventListener('submit',function(e){
         }
     }
     else{
-        if(!errorOn){
+        if(!errorOn){ /* ป้องกันไม่ให้กดปุ่มซ้ำแล้วทำให้ error หายถ้ายังไม่ valid */
             text.classList.toggle('text_error')
             inputContainer.classList.toggle('input_error')
             errorIcon.classList.toggle('error')
