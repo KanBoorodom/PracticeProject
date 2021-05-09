@@ -256,14 +256,25 @@ nav{
     content:'';
     border-bottom:5px solid var(--clr-softRed);
     width:80%;
-    bottom:3%;
+    bottom:10%;
     left:10%;
     position:absolute;
 }
-#feature_info{
-    margin-top:5em;
-}
 
+.feature_info_container{
+    visibility: hidden;
+    overflow: hidden;
+    opacity:0;
+    max-height: 0;
+    transition:all 2s ease;
+}
+.feature_active{
+    visibility:visible;
+    overflow: visible;
+    max-height: fit-content;
+    opacity:1;
+    transition:all 2s ease;
+}
 .img_two{
     width:90%;
 }
@@ -292,7 +303,7 @@ nav{
     text-align: center;
 }
 .download_box{
-    margin-top:3em;
+    margin:3em auto 0;
     padding:2em 1em 1em;
     border-radius: 10px;
     width:90%;
@@ -479,7 +490,7 @@ nav{
     width:100%;
     max-width:700px;
     border:none;
-    cursor: poni;
+    cursor: pointer;
 }
 .red_btn:active{
     opacity: .7;

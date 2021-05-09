@@ -22,7 +22,6 @@ const menuToggle = ()=>{
     path.classList.toggle('logoActiveBlue')
     logo.classList.toggle('logoActive')
     social.classList.toggle('social_active')
-    console.log(menu.style.top)
 }
 
 /*Scroll***********************/
@@ -77,44 +76,30 @@ hamburger.addEventListener('click',menuToggle)
 
 /* Tap and Feature Info*******************************************/
 const tapHeads = document.querySelectorAll('.tap_head')
-const firstTap = tapHeads[0]
-const imgTwo = document.querySelector('.img_two')
-const infoHead = document.querySelector('.feature_info_head')
-const infoP = document.querySelector('.feature_info_p')
-const featureActive = document.querySelector('.feature_info_container')
+const featureActive = document.querySelectorAll('.feature_info_container')
 /* Default อยู่ที่ tap แรก */
-firstTap.classList.toggle('tap_bottom_active')
-firstTap.classList.toggle('tap_head_active')
-tapHeads.forEach((tapHead)=>{ /* ทำ tap ให้ตอบสนองต่อแต่ละหัวข้อ */
-    tapHead.addEventListener('click',()=>{
-        var alreadyActive = document.querySelector('.tap_bottom_active') /*เช็คเพิ่อเปลี่ยนตัวที่ active*/
-        if(alreadyActive !== null){    
-            alreadyActive.classList.toggle('tap_bottom_active')    
-            alreadyActive.classList.toggle('tap_head_active')
+featureActive[0].classList.toggle('feature_active')
+tapHeads[0].classList.toggle('tap_bottom_active')
+tapHeads[0].classList.toggle('tap_head_active')
+
+for (let i = 0; i<tapHeads.length;i++){
+    tapHeads[i].addEventListener('click',()=>{
+        let tapHeadActive = document.querySelectorAll('.tap_head_active')
+        let featureAlreadyActive = document.querySelectorAll('.feature_active')
+        if(tapHeadActive.length > 0){
+            tapHeadActive[0].classList.toggle('tap_head_active')
+            tapHeadActive[0].classList.toggle('tap_bottom_active')
         }
-        tapHead.classList.toggle('tap_bottom_active')
-        tapHead.classList.toggle('tap_head_active')
-        if(tapHead.innerText === 'Simple Bookmarking'){
-            featureActive.classList.toggle('feature_active')
-             imgTwo.src = './images/illustration-features-tab-1.svg'            
-            infoHead.innerText = 'Bookmark in one click'
-            infoP.innerText = 'Organize your bookmarks however you like.Our simple drag-and-drop interface gives you\
-                                complete control over how you manage your favourite sites.'
-             return
-        }
-        else if(tapHead.innerText === 'Speedy Searching'){
-            imgTwo.src = './images/illustration-features-tab-2.svg'
-            infoHead.innerText = 'Intelligent search'
-            infoP.innerText = 'Our powerful search feature will help you find saved sites in no time at all.\
-                                No need to trawl through all of your bookmarks.'
+        tapHeads[i].classList.toggle('tap_head_active')
+        tapHeads[i].classList.toggle('tap_bottom_active')
+        /* คลิ๊กตัวเองไม่ต้อง toggle */
+        if(featureActive[i].classList.contains('feature_active')){
             return
         }
-        imgTwo.src = './images/illustration-features-tab-3.svg'
-        infoHead.innerText = 'Share your bookmarks'
-        infoP.innerText = 'Easily share your bookmarks and collections with others. Create a shareable\
-                            link that you can send at the click of a button.'
+        featureAlreadyActive[0].classList.toggle('feature_active')
+        featureActive[i].classList.toggle('feature_active')      
     })
-})
+}
 
 /* FAQ *******************************************/
 const arrows = document.querySelectorAll('.arrow')
@@ -158,7 +143,6 @@ submit.addEventListener('submit',function(e){
     e.preventDefault()
     if(email.value.match(reg)){
         if(errorOn){
-            console.log('match')
             text.classList.toggle('text_error')
             inputContainer.classList.toggle('input_error')
             errorIcon.classList.toggle('error')
