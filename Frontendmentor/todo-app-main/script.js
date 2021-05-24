@@ -1,3 +1,7 @@
+window.onload = (event)=>{
+    document.querySelector('body').classList.remove('preload')
+}
+
 /* Swap theme------------------------------------------------------------- */
 const themeBtn = document.querySelector('.toggle_btn')
 const changeTheme = ()=>{
@@ -10,7 +14,12 @@ themeBtn.addEventListener('click',changeTheme)
 /* Create todo func------------------------------------------------------------- */
 const todoContainer = document.querySelector('.todo_container')
 const newTodo = (value)=>{
-    console.log(todoContainer)
+    const todoDiv = document.createElement('div')
+    const todoCircle = document.createElement('span')
+    const todoLabel = document.createElement('label')
+    const todoInput = document.createElement('input')
+    const todoCross = document.createElement('span')
+/* 
     const todo = document.createElement('div')
     const todoText = document.createElement('p')
     const todoCheckBox = document.createElement('input')
@@ -19,23 +28,45 @@ const newTodo = (value)=>{
     todoText.textContent = value
     todoCheckBox.type = "checkbox"
     todoCheckBox.name = "checkbox"
-    todoCheckBoxLabel.htmlFor = "checkbox" /* sets or returns the value of the for attribute of a label. */
+    todoCheckBoxLabel.htmlFor = "checkbox" /* link label with input field
     todoCross.classList.add('cross')
-    /* Cancle checked */
-    todoCheckBoxLabel.addEventListener('click',(e)=>{
-        if(!todoCheckBox.checked){
-            todoCheckBox.checked = true
-            todoCheckBoxLabel.classList.add('active')
-            todoText.classList.add('cross_active') 
-            console.log('hi')
-            return
-        }
-        todoCheckBox.checked = false
-        todoText.classList.remove('cross_active')
-        todoCheckBoxLabel.classList.remove('active')
-    })
+ */   
+    todoContainer.appendChild(todoDiv)
+    todoDiv.classList.add('todo')
+    requestAnimationFrame(function () {
+        todoDiv.classList.add('todo_create')
+      })
+    todoDiv.appendChild(todoCircle)
+    todoCircle.classList.add('todo_circle')
+    todoCircle.classList.add('hover_circle')
+    todoDiv.appendChild(todoLabel)
+    todoLabel.innerText = value
+    todoLabel.appendChild(todoInput)
+    todoInput.type = "checkbox"
+    todoDiv.appendChild(todoCross)
+    todoCross.classList.add('cross')
 
-    /* delete done */
+    const labels = [todoCircle,todoLabel]
+    labels.forEach((label)=>{
+        label.addEventListener('click',(e)=>{
+            /* checkbox is not checked */
+            if(!todoInput.checked){
+                todoInput.checked = true
+                todoCircle.classList.remove('hover_circle')
+                todoLabel.classList.add('cross_active') 
+                todoCircle.classList.add('circle_active')
+                return
+            }
+            /* check box is checked */
+            todoInput.checked = false
+            todoLabel.classList.remove('cross_active')
+            todoLabel.classList.remove('active')
+            todoCircle.classList.remove('circle_active')
+            todoCircle.classList.add('hover_circle')
+        })
+    })
+/* 
+    /* delete done 
     todoCross.addEventListener('click',(e)=>{
         e.target.parentElement.remove()
     })
@@ -49,6 +80,14 @@ const newTodo = (value)=>{
     todo.appendChild(todoText)
     todo.appendChild(todoCross)
     todoContainer.appendChild(todo)
+ */
+    todoCross.addEventListener('click',()=>{
+        todoDiv.classList.add('todo_remove')    
+        setTimeout(function(){ 
+            todoCross.parentElement.remove()
+            },500
+        )
+    })
 }
 /* End create todo func------------------------------------------------------------- */
 
