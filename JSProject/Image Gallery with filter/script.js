@@ -23,3 +23,27 @@ window.onload = ()=>{//when window load
         }
     }
 }
+
+const previewBox = document.querySelector('.preview-box')
+const imgBox = document.querySelector('.image-box')
+const imgType = document.querySelector('.image-type')
+const closeIcon = document.querySelector('.icon')
+const shadow = document.querySelector('.shadow')
+closeIcon.addEventListener('click',()=>{
+    previewBox.classList.remove('showPreview')
+    shadow.classList.remove('shadowOn')}
+    
+    )        
+function preview(element){
+        previewBox.classList.add('show')
+    }
+
+filterImg.forEach(img=>{
+    img.addEventListener('click',(e)=>{
+        console.log(img.getAttribute('data-name'))
+        imgType.textContent = img.getAttribute('data-name')
+        imgBox.querySelector('img').src = e.target.src
+        previewBox.classList.add('showPreview')
+        shadow.classList.add('shadowOn')
+    })
+})
