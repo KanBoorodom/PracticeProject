@@ -22,8 +22,9 @@ const newTodo = (value)=>{
     const todoCross = document.createElement('span')
     const todoEdit = document.createElement('span')
     const type = document.querySelector('.type_todo')
-
-    todoContainer.appendChild(todoDiv)
+    const info = document.querySelector('.todo_info')
+    /* todoContainer.appendChild(todoDiv) */
+    todoContainer.insertBefore(todoDiv,info)
     todoDiv.classList.add('todo')
     requestAnimationFrame(function () {
         todoDiv.classList.add('todo_create')
@@ -66,6 +67,7 @@ const newTodo = (value)=>{
     }
     /* แก้ข้อความบางส่วน */
     const editSomeText = ()=>{
+        type.classList.remove('nonclick')    
         editable.value = 'false'
         todoLabel.style.cursor = "default"
         todoDiv.classList.remove('editTodo')
@@ -73,11 +75,13 @@ const newTodo = (value)=>{
     /* End check edit function------------------------------------------------------------- */
 
     /* Start Edit------------------------------------------------------------- */
-    todoEdit.addEventListener('click',()=>{
-        /* ทำให้ที่ add กับ todo ตัวอื่นคลิ็กไม่ได้ */
+    todoEdit.addEventListener('click',(e)=>{
         todoDiv.classList.add('editTodo')
-        type.classList.add('nonclick')
         todoLabel.style.cursor = "text"
+
+        /* ทำให้ที่ add คลิ็กไม่ได้ */
+        type.classList.add('nonclick')
+        /* ทำให้ todo ตัวอื่นทุกตัวคลิ้กไม่ได้เมื่อมีตัวใดตัวหนึ่งกำลังถูกแก้ไข */
         const todos = document.querySelectorAll('.todo')
         todos.forEach((todo)=>{
             if(!todo.classList.contains('editTodo')){
@@ -85,12 +89,13 @@ const newTodo = (value)=>{
                 todo.classList.toggle('nonclick')
             }
         })
+
         /* ยืนยันการแก้ข้อความโดยกดที่ปุ่น enter*/
         todoLabel.addEventListener('keypress',(e)=>{
             if(e.key === 'Enter'){
                 e.preventDefault();
                 checkRemove()
-                type.classList.remove('nonclick')    
+                /* กด enter หมายถึงแก้ไขสำเร็จแล้วจะเป็นการ remove อย่างเดียว */
                 todos.forEach((todo)=>{
                     if(!todo.classList.contains('editTodo')){
                         todo.classList.remove('blur')
@@ -103,11 +108,11 @@ const newTodo = (value)=>{
         })        
         /* ยืนยันการแก้ข้อความโดยกดที่ปุ่น edit ซ้ำ */
         if(editable.value == 'true'){
-            type.classList.remove('nonclick')
             checkRemove()        
             editSomeText()
             return
         } 
+
         editable.value = 'true'
     })
     /* End Edit------------------------------------------------------------- */
@@ -151,10 +156,11 @@ const newTodo = (value)=>{
 
 /* Todo */
 const todoInput = document.querySelector('#todo_input')
-const todos = []
+/* const todos = []
+ */
 todoInput.addEventListener('keyup',function(e){
     if((e.key === 'Enter' || e.key === 13) && (e.target.value.length>0)){
-        todos.push({value:e.target.value,checked:false})
+       /*  todos.push({value:e.target.value,checked:false}) */
         newTodo(e.target.value)
         todoInput.value = ""
     }
