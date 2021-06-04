@@ -10,21 +10,33 @@
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; }
+    .attribution { font-size: 11px; text-align: center; margin-top:5em; background:red;}
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 </head>
-<body>
+<body class="preload">
   <div class = "top_img">
   </div>
-  <main>
+  <main>    
     <header>
       <h1>todo</h1>
       <div class="toggle_btn"></div>  
     </header>
     <div class="type_todo">
-      <div class="circle"></div>
+      <div class="circle border_circle"></div>
       <input type="text" id="todo_input" placeholder="Create a new todo...">
+    </div>
+
+    <div class="todo_container todos">
+      <div class="todo_info">
+          <p class="item_left">xx items left</p>
+          <div class="status">
+            <div class="all status_active">All</div>
+            <div class="active">Active</div>
+            <div class="completed">Completed</div>
+          </div>
+          <p class="clear">Clear Completed</p>
+        </div>
     </div>
   </main>
   Todo
