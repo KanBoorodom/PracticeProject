@@ -1,3 +1,5 @@
+
+
 window.onload = (event)=>{
     document.querySelector('body').classList.remove('preload')
 }
@@ -13,6 +15,17 @@ themeBtn.addEventListener('click',changeTheme)
 
 /* Create todo func------------------------------------------------------------- */
 const todoContainer = document.querySelector('.todo_container')
+function checkTodoSize(){
+    const todoSize = document.querySelectorAll('.todo').length
+    if(todoSize > 0){
+        todoInfo.classList.add('show_info')        
+    }   
+    else if(todoSize == 0){
+        todoInfo.classList.remove('show_info')
+    }
+    document.querySelector('.item_left').innerText = `${todoSize} items left`
+}
+
 const newTodo = (value)=>{
     /* Create Component------------------------------------------------------------- */
     const todoDiv = document.createElement('div')
@@ -147,8 +160,10 @@ const newTodo = (value)=>{
         type.classList.remove('nonclick')
         setTimeout(function(){ 
             todoCross.parentElement.remove()
+            checkTodoSize()
             },500
         )
+        checkTodoSize()
     })
     /* End Delete------------------------------------------------------------- */
 }
@@ -156,12 +171,21 @@ const newTodo = (value)=>{
 
 /* Todo */
 const todoInput = document.querySelector('#todo_input')
+const todoInfo = document.querySelector('.todo_info')
 /* const todos = []
  */
 todoInput.addEventListener('keyup',function(e){
+    const todoSize = document.querySelectorAll('.todo').length
     if((e.key === 'Enter' || e.key === 13) && (e.target.value.length>0)){
+/*         if(todoSize == 0){
+            todoInfo.classList.add('show_info')           
+        }     */
        /*  todos.push({value:e.target.value,checked:false}) */
         newTodo(e.target.value)
+        /*  */
+        checkTodoSize()
         todoInput.value = ""
     }
 })
+
+
