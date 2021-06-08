@@ -94,7 +94,6 @@ const newTodo = (value)=>{
     /* Drag------------------------------------------------------------- */
     
     newTodoDiv.addEventListener('dragstart',(e)=>{
-        //newTodoDiv.style.opacity = '0.4'
         newTodoDiv.classList.add('dragStart')
         dragSrcEl = newTodoDiv
         e.dataTransfer.effectAllowed = 'move'
@@ -102,7 +101,6 @@ const newTodo = (value)=>{
     })
     
     newTodoDiv.addEventListener('dragend',()=>{
-        //newTodoDiv.style.opacity = '1.0'  
         newTodoDiv.classList.remove('dragStart')
     })
 
@@ -113,25 +111,19 @@ const newTodo = (value)=>{
     })
 /* sometimes dragenter not working 
     newTodoDiv.addEventListener('dragenter',(e)=>{
-        //newTodoDiv.style.opacity = '0.4'
         newTodoDiv.classList.add('dragStart')
         newTodoDiv.classList.add('dragOver')
-        //newTodoDiv.style.transform = 'scale(1.03,1.03)' 
     })
 */    
     newTodoDiv.addEventListener('dragleave',()=>{
         newTodoDiv.classList.remove('dragStart')
         newTodoDiv.classList.remove('dragOver')
-        //newTodoDiv.style.transform = 'scale(1,1)' 
-        //newTodoDiv.style.opacity = '1.0'
     })
 
     newTodoDiv.addEventListener('drop',(e)=>{
         e.stopPropagation()
         newTodoDiv.classList.remove('dragStart')
         newTodoDiv.classList.remove('dragOver')
-        //newTodoDiv.style.transform = 'scale(1,1)'   
-        //newTodoDiv.style.opacity = '1.0'
         dragSrcEl.innerHTML = newTodoDiv.innerHTML
         newTodoDiv.innerHTML = e.dataTransfer.getData('text/HTML')
 
@@ -273,6 +265,8 @@ todos.addEventListener('click',e=>{
     /* Click Edit */
     if(e.target.classList.contains('edit')){
         const totalTodos = document.querySelectorAll('.todo')
+        console.log(e.target.parentElement.querySelector('.todo_circle'))
+        e.target.parentElement.querySelector('.todo_circle').classList.add('edit_circle')
         todoDiv.classList.add('editTodo')
         todoLabel.style.cursor = "text"
         type.classList.add('nonclick')
@@ -298,9 +292,9 @@ todos.addEventListener('click',e=>{
             }
         })     
         if(todoLabel.getAttribute('contenteditable') == 'true'){
-            console.log('click')
             checkRemove()        
             editSomeText()
+            e.target.parentElement.querySelector('.todo_circle').classList.remove('edit_circle')
             return
         }    
         todoLabel.setAttribute('contenteditable','true')
