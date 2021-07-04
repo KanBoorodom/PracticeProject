@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    font-size:18px;
+}
+.inputContainer{
+    flex-grow: .75;
+    position:relative;
+}
+form{
+    width:75%;
+    margin:auto;
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.inputStyle{
+    margin-top:200px;
+    width:100%;
+    padding:.5em;
+}
+.add{
+    margin-left:.25em;
+}
+.addBtn{
+    position:absolute;
+    background:none;
+    border:none;
+    border-left:2px solid black;
+    bottom:2%;   
+    right:0;
+    padding:.25em .5em;
+    cursor:pointer;
+}
+select{
+    height:100%;
+    margin-bottom:.5em;
+}
